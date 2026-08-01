@@ -1,10 +1,40 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   KYVENTIS TECH brand palette — remaps the legacy cyan/slate theme to
+   Deep Amethyst Purple · Liquid Copper · Alabaster Mist.
+   ========================================================================== */
+@theme {
+  /* Copper accent (was cyan) */
+  --color-cyan-200: #f7c9b6;
+  --color-cyan-300: #f0997e;
+  --color-cyan-400: #e07a5f;
+  --color-cyan-500: #d98a72;
+  --color-cyan-600: #b76e4e;
+
+  /* Bronze / amethyst secondary (was blue) */
+  --color-blue-400: #d98a72;
+  --color-blue-500: #b76e4e;
+  --color-blue-600: #b76e4e;
+  --color-blue-700: #2a1b4e;
+
+  /* Amethyst backgrounds (was slate) */
+  --color-slate-700: #3a2a63;
+  --color-slate-800: #2a1b4e;
+  --color-slate-900: #1a0f33;
+  --color-slate-950: #120a24;
+
+  /* Brand tokens for direct use */
+  --color-amethyst: #2a1b4e;
+  --color-copper: #e07a5f;
+  --color-alabaster: #f4f1de;
+}
+
 :root {
-  --cyan: #06b6d4;
-  --blue: #3b82f6;
-  --slate-900: #0f172a;
-  --slate-950: #020617;
+  --cyan: #e07a5f;      /* liquid copper */
+  --blue: #b76e4e;      /* warm bronze */
+  --slate-900: #1a0f33; /* deep amethyst */
+  --slate-950: #120a24; /* amethyst black */
 }
 
 /* Loading Spinner */
@@ -37,7 +67,7 @@
 .toast {
   padding: 12px 24px;
   border-radius: 8px;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(26, 15, 51, 0.9);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
@@ -114,7 +144,7 @@ body:hover .cursor-follower {
 
 /* Live Ticker */
 .live-ticker {
-  background: rgba(2, 6, 23, 0.4);
+  background: rgba(18, 10, 36, 0.4);
 }
 
 .ticker-track {
@@ -143,7 +173,7 @@ body:hover .cursor-follower {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(224, 122, 95, 0.1);
 }
 
 /* Tilt Effect Container */
@@ -191,7 +221,7 @@ body:hover .cursor-follower {
 .portfolio-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(2, 6, 23, 0.9), transparent);
+  background: linear-gradient(to top, rgba(18, 10, 36, 0.9), transparent);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -219,7 +249,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .container {
@@ -231,7 +262,7 @@ h1, h2, h3, h4 {
 /* Navbar */
 .navbar {
   padding: 20px 0;
-  background: rgba(2, 6, 23, 0.8);
+  background: rgba(18, 10, 36, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
@@ -299,7 +330,7 @@ h1, h2, h3, h4 {
 /* Light Mode Styles */
 body.light-mode {
   background-color: #f8fafc;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .navbar {
@@ -312,22 +343,22 @@ body.light-mode .nav-links a {
 }
 
 body.light-mode .nav-links a:hover, body.light-mode .nav-links a.active {
-  color: #0891b2;
+  color: #b76e4e;
 }
 
 body.light-mode .glass {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .currency-selector {
-  color: #0f172a !important;
+  color: #1a0f33 !important;
 }
 
 body.light-mode .currency-selector option {
   background: white;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .text-slate-400 {
@@ -356,7 +387,7 @@ body.light-mode .stat-card {
 }
 
 body.light-mode .theme-toggle-btn {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .theme-toggle-btn:hover {
@@ -368,11 +399,11 @@ body.light-mode .hero-sub {
 }
 
 body.light-mode .title-text {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .mobile-menu-toggle {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .nav-links {
@@ -381,7 +412,7 @@ body.light-mode .nav-links {
 
 body.light-mode .modal-content {
   background: white;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .form-group label {
@@ -391,7 +422,7 @@ body.light-mode .form-group label {
 body.light-mode .form-group input, body.light-mode .form-group select, body.light-mode .form-group textarea {
   background: #f1f5f9;
   border-color: #e2e8f0;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .footer {
@@ -401,7 +432,7 @@ body.light-mode .footer {
 }
 
 body.light-mode .footer h4 {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .footer-links a {
@@ -427,7 +458,7 @@ body.light-mode .blog-card {
 }
 
 body.light-mode .blog-card h3 {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .blog-card p {
@@ -498,7 +529,7 @@ body.light-mode .data-table tr:hover {
 }
 
 body.light-mode .admin-section h2 {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .atmosphere {
@@ -508,7 +539,7 @@ body.light-mode .atmosphere {
 body.light-mode .staff-btn {
   background: rgba(0, 0, 0, 0.05) !important;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  color: #0f172a !important;
+  color: #1a0f33 !important;
 }
 
 body.light-mode .staff-btn:hover {
@@ -519,11 +550,11 @@ body.light-mode .glass {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .stat-card .stat-value {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .stat-card span.text-slate-400 {
@@ -531,7 +562,7 @@ body.light-mode .stat-card span.text-slate-400 {
 }
 
 body.light-mode .data-table td .font-bold {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .data-table td .text-slate-400 {
@@ -546,7 +577,7 @@ body.light-mode .form-group input,
 body.light-mode .form-group select {
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode #message-list > div:hover {
@@ -554,13 +585,13 @@ body.light-mode #message-list > div:hover {
 }
 
 body.light-mode #message-list > div.bg-cyan-500\/10 {
-  background: rgba(6, 182, 212, 0.05);
-  border-color: rgba(6, 182, 212, 0.2);
+  background: rgba(224, 122, 95, 0.05);
+  border-color: rgba(224, 122, 95, 0.2);
 }
 
 body.light-mode #msg-sender,
 body.light-mode #msg-content {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode #msg-email,
@@ -571,7 +602,7 @@ body.light-mode #msg-date {
 body.light-mode .btn-secondary {
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 /* WhatsApp Like Chat Styles */
@@ -848,7 +879,7 @@ body.light-mode .btn-secondary {
 
 #back-to-top:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 10px 25px rgba(224, 122, 95, 0.3);
 }
 
 @media (max-width: 640px) {
@@ -974,7 +1005,7 @@ body.is-staff li.staff-only {
 /* Notification Dropdown */
 #notification-dropdown {
   backdrop-filter: blur(20px);
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(26, 15, 51, 0.9);
 }
 
 body.light-mode #notification-dropdown {
@@ -996,7 +1027,7 @@ body.light-mode #notification-dropdown .border-white\/5 {
 }
 
 body.light-mode #notification-dropdown h3 {
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 /* Task Cards for Staff Dashboard */
@@ -1054,8 +1085,8 @@ body.light-mode .sidebar-orange .sidebar-nav a.active {
 
 .service-card-item input:checked + .card-inner {
   border-color: var(--cyan);
-  background: rgba(6, 182, 212, 0.1);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  background: rgba(224, 122, 95, 0.1);
+  box-shadow: 0 0 20px rgba(224, 122, 95, 0.2);
   transform: translateY(-5px);
 }
 
@@ -1095,7 +1126,7 @@ body.light-mode .sidebar-orange .sidebar-nav a.active {
 }
 
 .contact-card:hover .w-14 {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 20px rgba(224, 122, 95, 0.4);
 }
 
 .faq-card {
@@ -1112,19 +1143,19 @@ body.light-mode .sidebar-orange .sidebar-nav a.active {
 /* Form Group Enhancements */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #334155;
+  color: #3a2a63;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
+  box-shadow: 0 0 0 4px rgba(224, 122, 95, 0.1);
 }
 
 /* Int-Tel-Input Fix for Dark Mode */
 .iti { width: 100%; }
 .iti__country-list {
-  background-color: #0f172a;
+  background-color: #1a0f33;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
 }
@@ -1210,7 +1241,7 @@ img {
     right: -100%;
     width: 100%;
     height: 100vh;
-    background: rgba(2, 6, 23, 0.98);
+    background: rgba(18, 10, 36, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
@@ -1323,7 +1354,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 60%),
+  background: radial-gradient(circle at 50% 30%, rgba(224, 122, 95, 0.15) 0%, transparent 60%),
               radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
   filter: blur(80px);
   z-index: 0;
@@ -1367,7 +1398,7 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 10px 20px rgba(224, 122, 95, 0.3);
 }
 
 .btn-secondary {
@@ -1464,7 +1495,7 @@ body.is-logged-in .currency-selector {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.05));
+  background: linear-gradient(45deg, transparent, rgba(224, 122, 95, 0.05));
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -1476,7 +1507,7 @@ body.is-logged-in .currency-selector {
 .card:hover {
   background: rgba(255, 255, 255, 0.06);
   transform: translateY(-5px);
-  border-color: rgba(6, 182, 212, 0.3);
+  border-color: rgba(224, 122, 95, 0.3);
 }
 
 .card-icon {
@@ -1535,7 +1566,7 @@ body.is-logged-in .currency-selector {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.2) 100%);
+  background: linear-gradient(to top, rgba(18, 10, 36, 0.9) 0%, rgba(18, 10, 36, 0.2) 100%);
   z-index: -1;
 }
 
@@ -1545,7 +1576,7 @@ body.is-logged-in .currency-selector {
   left: 0;
   width: 100%;
   padding: 20px;
-  background: linear-gradient(to top, rgba(2, 6, 23, 0.9), transparent);
+  background: linear-gradient(to top, rgba(18, 10, 36, 0.9), transparent);
   transform: translateY(100%);
   transition: transform 0.3s;
 }
@@ -1614,7 +1645,7 @@ body.is-logged-in .currency-selector {
   justify-content: center;
   font-size: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 10px 25px rgba(224, 122, 95, 0.4);
   z-index: 1000;
   border: none;
 }
@@ -1753,7 +1784,7 @@ body.js-enabled .reveal.active {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.9);
+  background: rgba(18, 10, 36, 0.9);
   backdrop-filter: blur(12px);
   display: none;
   align-items: center;
@@ -1771,7 +1802,7 @@ body.js-enabled .reveal.active {
 .modal-content {
   width: 100%;
   max-width: 500px;
-  background: #0f172a;
+  background: #1a0f33;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   padding: 32px;
@@ -1845,7 +1876,7 @@ body.light-mode .sidebar-nav a {
 
 body.light-mode .sidebar-nav a:hover, body.light-mode .sidebar-nav a.active {
   background: rgba(8, 145, 178, 0.1);
-  color: #0891b2;
+  color: #b76e4e;
 }
 
 body.light-mode .main-content {
@@ -1864,7 +1895,7 @@ body.light-mode .data-table th {
 
 body.light-mode .data-table td {
   border-bottom: 1px solid #e2e8f0;
-  color: #0f172a;
+  color: #1a0f33;
 }
 
 body.light-mode .status-badge {
@@ -1878,7 +1909,7 @@ body.light-mode .status-badge {
 }
 
 .iti__country-list {
-  background-color: #0f172a !important; /* slate-900 */
+  background-color: #1a0f33 !important; /* slate-900 */
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: white !important;
   border-radius: 8px !important;
@@ -1890,11 +1921,11 @@ body.light-mode .status-badge {
 body.light-mode .iti__country-list {
   background-color: white !important;
   border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
+  color: #1a0f33 !important;
 }
 
 body.light-mode .iti__country-name {
-  color: #0f172a !important;
+  color: #1a0f33 !important;
 }
 
 body.light-mode .iti__dial-code {
@@ -1907,7 +1938,7 @@ body.light-mode .iti__dial-code {
 }
 
 .iti__country:hover, .iti__country.iti__highlight {
-  background-color: rgba(6, 182, 212, 0.1) !important;
+  background-color: rgba(224, 122, 95, 0.1) !important;
 }
 
 .iti__country-name {
