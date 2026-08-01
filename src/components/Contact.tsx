@@ -1,5 +1,5 @@
 import {FormEvent, useState} from 'react';
-import {ArrowRight, CheckCircle2, Mail, MapPin, Phone} from 'lucide-react';
+import {ArrowRight, CheckCircle2, Loader2, Mail, MapPin, Phone} from 'lucide-react';
 
 type Fields = {name: string; email: string; budget: string; message: string};
 type Errors = Partial<Record<keyof Fields, string>>;
@@ -20,6 +20,8 @@ export default function Contact() {
     {},
   );
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const validate = (f: Fields): Errors => {
     const e: Errors = {};
@@ -43,14 +45,32 @@ export default function Contact() {
     setErrors(validate(fields));
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setServerError(null);
     const found = validate(fields);
     setErrors(found);
     setTouched({name: true, email: true, budget: true, message: true});
-    if (Object.keys(found).length === 0) {
-      // Front-end demo only — wire to your new Firebase project / email service.
+    if (Object.keys(found).length > 0) return;
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(fields),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
       setSent(true);
+    } catch (err) {
+      setServerError(
+        err instanceof Error ? err.message : 'Network error. Please try again.',
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -212,16 +232,31 @@ export default function Contact() {
                     )}
                   </div>
 
+                  {serverError && (
+                    <p className="rounded-xl border border-[#ef8378]/30 bg-[#ef8378]/10 px-4 py-3 text-sm text-[#ef8378]">
+                      {serverError}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="btn-liquid group inline-flex w-full items-center justify-center gap-2 px-7 py-4 text-base"
+                    disabled={submitting}
+                    className="btn-liquid group inline-flex w-full items-center justify-center gap-2 px-7 py-4 text-base disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    Send message
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        Send message
+                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
                   </button>
                   <p className="text-center text-xs text-alabaster/35">
-                    Front-end demo — connect this to your new Firebase project to
-                    go live.
+                    We reply within one business day.
                   </p>
                 </form>
               )}
