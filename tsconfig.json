@@ -13,6 +13,7 @@
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
+    "jsx": "react-jsx",
     "allowJs": true,
     "paths": {
       "@/*": [
