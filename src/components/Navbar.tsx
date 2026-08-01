@@ -29,13 +29,12 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <a href="#top" className="group flex items-center gap-3">
-          <span className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl bg-amethyst ring-1 ring-copper/40">
-            <span className="font-display text-xl font-extrabold text-copper-gradient">
-              K
-            </span>
-            <span className="pointer-events-none absolute -right-6 top-0 h-full w-8 -skew-x-12 bg-gradient-to-b from-copper-light/60 to-transparent blur-md transition-all duration-500 group-hover:right-10" />
-          </span>
+        <a href="#top" className="group flex items-center gap-2.5">
+          <img
+            src="/images/kyventis-mark.png"
+            alt="Kyventis Tech"
+            className="h-11 w-11 object-contain transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3"
+          />
           <span className="font-display text-lg font-extrabold tracking-tight text-alabaster">
             Kyventis <span className="text-copper">Tech</span>
           </span>

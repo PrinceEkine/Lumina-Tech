@@ -58,9 +58,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <a href="#top" className="flex items-center gap-3">
+            <a href="#top" className="flex items-center gap-2.5">
               <img
-                src="/images/kyventis-logo.png"
+                src="/images/kyventis-mark.png"
                 alt="Kyventis Tech"
                 className="h-12 w-12 object-contain"
               />
