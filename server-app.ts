@@ -192,14 +192,14 @@ app.post("/api/send-email", async (req, res) => {
 
   try {
     const mailOptions = {
-      from: `"Lumina Tech" <${process.env.SMTP_USER}>`,
+      from: `"Kyventis Tech" <${process.env.SMTP_USER}>`,
       to: to,
       subject: subject,
       html: `<div style="font-family: sans-serif; padding: 20px; color: #333; line-height: 1.6;">
-              <h2 style="color: #00cfd5; border-bottom: 2px solid #00cfd5; padding-bottom: 10px;">Lumina Tech Notification</h2>
+              <h2 style="color: #e07a5f; border-bottom: 2px solid #e07a5f; padding-bottom: 10px;">Kyventis Tech Notification</h2>
               <p style="font-size: 16px;">${message}</p>
               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999;">
-                <p>&copy; 2026 Lumina Tech. All rights reserved.</p>
+                <p>&copy; 2026 Kyventis Tech. All rights reserved.</p>
                 <p>This is an automated message, please do not reply.</p>
               </div>
             </div>`,
