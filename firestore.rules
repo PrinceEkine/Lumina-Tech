@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- GLOBAL HELPERS ---
+    function isSignedIn() { return request.auth != null; }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() { 
+      return isSignedIn() && getUserData().role in ['Admin', 'CEO', 'Assistant CEO', 'Ass CEO'];
+    }
+
+    function isHR() {
+      return isSignedIn() && getUserData().role == 'HR';
+    }
+
+    function isStaff() {
+      return isSignedIn() && getUserData().role != 'Client' && getUserData().role != null;
+    }
+
+    function isOwner(uid) { return isSignedIn() && request.auth.uid == uid; }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isValidId(id) { return id is string && id.size() <= 64 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+
+    // --- ENTITY VALIDATIONS (Pillar 2) ---
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'role']) &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.email is string && data.email.size() <= 100;
+    }
+
+    function isValidAttendance(data) {
+      return data.keys().hasAll(['staff_id', 'date', 'clock_in', 'status']) &&
+             data.staff_id is string && isValidId(data.staff_id) &&
+             data.date is string && data.date.size() == 10 &&
+             data.status is string && data.status.size() <= 50;
+    }
+
+    function isValidTask(data) {
+      return data.keys().hasAll(['title', 'assignee_id', 'status', 'created_at', 'created_by']) &&
+             data.title is string && data.title.size() > 0 && data.title.size() <= 200 &&
+             data.assignee_id is string && isValidId(data.assignee_id) &&
+             data.status in ['pending', 'in-progress', 'completed', 'accepted', 'submitted', 'declined', 'approved', 'rejected'];
+    }
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['sender_id', 'sender_name', 'content', 'created_at', 'status']) &&
+             data.sender_id is string && data.sender_id == request.auth.uid &&
+             data.content is string && data.content.size() > 0 && data.content.size() <= 5000;
+    }
+
+    // --- COLLECTION RULES (Pillar 4 & 8) ---
+
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isOwner(userId) && isValidUser(incoming());
+      allow update: if (isSignedIn() && isOwner(userId) && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'phone_number', 'username', 'photo_url', 'updated_at', 'status'])) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /attendance/{atId} {
+      allow read: if isStaff() || (isSignedIn() && existing().staff_id == request.auth.uid);
+      allow create: if isSignedIn() && isOwner(incoming().staff_id) && isValidAttendance(incoming());
+      allow update: if (isSignedIn() && isOwner(existing().staff_id) && incoming().diff(existing()).affectedKeys().hasOnly(['clock_out', 'status', 'updated_at'])) || isAdmin() || isHR();
+      allow delete: if isAdmin() || isHR();
+    }
+
+    match /tasks/{taskId} {
+      allow read: if isStaff();
+      allow create: if (isAdmin() || isHR()) && isValidTask(incoming());
+      allow update: if isSignedIn() && (
+        (isOwner(existing().assignee_id) && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'completion_date', 'updated_at', 'submission_notes', 'submission_link', 'submission_image', 'submitted_at'])) || 
+        isAdmin() || isHR()
+      );
+      allow delete: if isAdmin();
+    }
+
+    match /messages/{messageId} {
+      allow read: if isSignedIn() && (existing().recipient_id == null || existing().recipient_id == 'global' || isOwner(existing().recipient_id) || isOwner(existing().sender_id));
+      allow list: if isSignedIn() && (resource.data.recipient_id == null || resource.data.recipient_id == 'global' || resource.data.recipient_id == request.auth.uid || resource.data.sender_id == request.auth.uid);
+      allow create: if isSignedIn() && isValidMessage(incoming()) && incoming().sender_id == request.auth.uid;
+      allow update: if isSignedIn() && isOwner(existing().recipient_id) && incoming().diff(existing()).affectedKeys().hasOnly(['status']) && incoming().status == 'read';
+      allow delete: if isAdmin();
+    }
+
+    match /leave_requests/{requestId} {
+      allow read: if isStaff() || (isSignedIn() && existing().staff_id == request.auth.uid);
+      allow create: if isSignedIn() && isOwner(incoming().staff_id) && incoming().status == 'Pending';
+      allow update: if (isAdmin() || isHR()) && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updated_at']);
+      allow delete: if (isSignedIn() && isOwner(existing().staff_id) && existing().status == 'Pending') || isAdmin();
+    }
+
+    match /announcements/{annId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin() || isHR();
+    }
+
+    match /media/{fileId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow delete: if isAdmin() || isHR();
+    }
+
+    match /notifications/{notifId} {
+      allow read, update, delete: if isSignedIn() && (existing().user_id == request.auth.uid);
+      allow create: if isSignedIn();
+    }
+
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /recognition/{recId} {
+      allow read: if isSignedIn();
+      allow create: if isStaff();
+      allow delete: if isAdmin();
+    }
+
+    match /inquiries/{inqId} {
+      allow read, update, delete: if isAdmin() || isHR();
+      allow create: if true;
+    }
+
+    match /bookings/{bookId} {
+      allow read: if isAdmin() || isHR();
+      allow create: if true;
+      allow update: if (isAdmin() || isHR());
+      allow delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Tech | About Us</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%2322d3ee;stop-opacity:1' /><stop offset='100%25' style='stop-color:%232563eb;stop-opacity:1' /></linearGradient></defs><rect width='100' height='100' rx='20' fill='%230f172a'/><path d='M35 25 v50 h30' stroke='url(%23g)' stroke-width='12' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-white overflow-x-hidden">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="/" class="logo flex items-center gap-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
+          <span class="text-white font-black text-xl">L</span>
+        </div>
+        <span class="text-xl font-bold tracking-tight">Lumina <span class="text-cyan-400">Tech</span></span>
+      </a>
+      <nav>
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/booking.html">Booking</a></li>
+          <li><a href="/blog.html">Blogs</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li class="flex items-center">
+            <select class="currency-selector glass bg-transparent border-none text-xs font-bold text-cyan-400 mr-2 focus:outline-none cursor-pointer">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="NGN">NGN (₦)</option>
+            </select>
+            <button id="theme-toggle" class="theme-toggle-btn mr-4" aria-label="Toggle dark mode">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+          <li>
+            <button id="staff-login-btn" class="staff-btn">Staff Login</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header relative overflow-hidden">
+    <div class="atmosphere"></div>
+    <div class="container relative z-10">
+      <div class="reveal">
+        <h1 class="page-title">About <span class="text-gradient">Lumina Tech</span></h1>
+        <p class="page-subtitle">Pioneering the next generation of digital excellence through innovation and smart design.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div class="reveal">
+          <h2 class="text-4xl font-bold mb-6">Our <span class="text-cyan-400">Story</span></h2>
+          <p class="text-slate-400 text-lg mb-6 leading-relaxed">Founded in 2026, Lumina Tech was born from a simple yet powerful vision: to bridge the gap between complex technology and human-centric design. We believe that digital tools should not just function, but inspire.</p>
+          <p class="text-slate-400 text-lg mb-8 leading-relaxed">Our team of engineers, designers, and strategists work at the intersection of aesthetics and performance, delivering high-impact solutions that scale with global ambitions.</p>
+          <div class="flex gap-4">
+            <div class="glass p-6 rounded-2xl flex-1">
+              <div class="text-3xl font-bold text-cyan-400 mb-1">99%</div>
+              <div class="text-xs uppercase tracking-widest text-slate-500">Client Satisfaction</div>
+            </div>
+            <div class="glass p-6 rounded-2xl flex-1">
+              <div class="text-3xl font-bold text-blue-400 mb-1">500+</div>
+              <div class="text-xs uppercase tracking-widest text-slate-500">Global Projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative reveal delay-200">
+          <div class="w-full h-[400px] rounded-3xl overflow-hidden glass shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Team Collaboration" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl hidden md:block">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400">
+                <i class="fas fa-microchip text-xl"></i>
+              </div>
+              <p class="font-bold text-sm">Technology-First<br><span class="text-[10px] text-slate-500 uppercase">Approach</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal delay-300">
+        <h2 class="text-4xl font-bold mb-12 text-center">Our Core <span class="text-gradient">Values</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass p-8 rounded-3xl group hover:bg-white/5 transition-all">
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-lightbulb text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-4">Relentless Innovation</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">We don't follow trends; we set them. Every project is an opportunity to push the boundaries of what's possible.</p>
+          </div>
+          <div class="glass p-8 rounded-3xl group hover:bg-white/5 transition-all">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-shield-halved text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-4">Architectural Integrity</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">Security and stability are the foundations of our work. We build digital infrastructures that stand the test of time.</p>
+          </div>
+          <div class="glass p-8 rounded-3xl group hover:bg-white/5 transition-all">
+            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-heart text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-4">Human Connection</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">Technology is a tool for people. We design interfaces that feel natural, intuitive, and engaging.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="logo flex items-center gap-2 mb-4">
+            <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <span class="text-white font-black text-xl">L</span>
+            </div>
+            <span class="text-xl font-bold tracking-tight text-white">Lumina <span class="text-cyan-400">Tech</span></span>
+          </a>
+          <p>Elevating digital standards since 2026.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-group">
+            <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Main</h4>
+            <a href="/">Home</a>
+            <a href="/booking.html">Booking</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+          </div>
+          <div class="footer-group">
+            <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Company</h4>
+            <a href="/about.html">About Us</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+          </div>
+        </div>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Lumina Tech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
