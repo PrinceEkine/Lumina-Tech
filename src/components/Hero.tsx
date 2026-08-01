@@ -132,15 +132,17 @@ export default function Hero() {
         <div className="marquee-track text-sm font-semibold uppercase tracking-[0.25em] text-alabaster/30">
           {[...Array(2)].map((_, i) => (
             <span key={i} className="flex gap-16">
-              <span>Web &amp; Mobile</span>
+              <span>Web Development</span>
               <span className="text-copper">◆</span>
-              <span>Brand Identity</span>
+              <span>Graphic Design</span>
               <span className="text-copper">◆</span>
-              <span>Motion &amp; 3D</span>
+              <span>Video Editing</span>
               <span className="text-copper">◆</span>
-              <span>Product Design</span>
+              <span>Tech Consultation</span>
               <span className="text-copper">◆</span>
-              <span>Creative Direction</span>
+              <span>Web App Development</span>
+              <span className="text-copper">◆</span>
+              <span>Artistic Drawings</span>
               <span className="text-copper">◆</span>
             </span>
           ))}
